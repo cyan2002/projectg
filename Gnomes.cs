@@ -21,7 +21,7 @@ public class Gnomes : MonoBehaviour
     public bool isGrounded = false;
 
     private float movementSpeed = 2.5f;
-    private float jumpForce = 4.5f;
+    private float jumpForce = 3f;
 
     private int health = 3;
 
@@ -239,9 +239,9 @@ public class Gnomes : MonoBehaviour
         }
         else
         {
-            RaycastHit2D hitInfo2 = Physics2D.Raycast(raycastStart, Vector2.right, -.75f, whatIsWall);
+            RaycastHit2D hitInfo2 = Physics2D.Raycast(raycastStart, Vector2.right, -1f, whatIsWall);
             RaycastHit2D hitInfo4 = Physics2D.Raycast(raycastStart3, Vector2.down, 3f, whatIsWall);
-            RaycastHit2D hitInfo6 = Physics2D.Raycast(transform.position, Vector2.right, -.75f, whatIsWall);
+            RaycastHit2D hitInfo6 = Physics2D.Raycast(transform.position, Vector2.right, -1f, whatIsWall);
 
             if (hitInfo2.collider != null)
             {

@@ -73,7 +73,7 @@ public class Termite : MonoBehaviour
         if (right)
         {
             RaycastHit2D hitInfo1 = Physics2D.Raycast(raycastStart, Vector2.right, 1f, whatIsWall);
-            RaycastHit2D hitInfo3 = Physics2D.Raycast(raycastStart2, Vector2.down, 2f, whatIsWall);
+            RaycastHit2D hitInfo3 = Physics2D.Raycast(raycastStart2, Vector2.down, 1f, whatIsWall);
 
             if (hitInfo1.collider != null)
             {
@@ -93,7 +93,7 @@ public class Termite : MonoBehaviour
         else
         {
             RaycastHit2D hitInfo2 = Physics2D.Raycast(raycastStart, Vector2.right, -1f, whatIsWall);
-            RaycastHit2D hitInfo4 = Physics2D.Raycast(raycastStart3, Vector2.down, 2f, whatIsWall);
+            RaycastHit2D hitInfo4 = Physics2D.Raycast(raycastStart3, Vector2.down, 1f, whatIsWall);
 
             if (hitInfo2.collider != null)
             {
