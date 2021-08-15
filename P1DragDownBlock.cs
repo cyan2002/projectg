@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P1PuzzelDragdownBlocks : MonoBehaviour
+public class P1DragDownBlock : MonoBehaviour
 {
     public bool up = false;
     public bool on = false;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P1PuzzelSwitch : MonoBehaviour
+public class P1Switch : MonoBehaviour
 {
 
     public int counter = 0;
@@ -25,7 +25,7 @@ public class P1PuzzelSwitch : MonoBehaviour
             {
                 if (coolDown)
                 {
-                    animator.SetBool("on", true);
+                    animator.SetBool("Flick", true);
                     coolDown = false;
                     counter++;
                     down = true;
@@ -35,7 +35,7 @@ public class P1PuzzelSwitch : MonoBehaviour
             {
                 if (coolDown)
                 {
-                    animator.SetBool("on", false);
+                    animator.SetBool("Flick", false);
                     coolDown = false;
                     counter++;
                     down = false;
@@ -58,7 +58,7 @@ public class P1PuzzelSwitch : MonoBehaviour
         allow = false;
     }
 
-    void letPlayerPullAgain()
+    void finishAnimation()
     {
         coolDown = true;
     }

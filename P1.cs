@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class P1 : MonoBehaviour
 {
-    public P1PuzzelDragdownBlocks[] movingStones = new P1PuzzelDragdownBlocks[4];
-    public P1PuzzelSwitch[] levers = new P1PuzzelSwitch[4];
+    public P1DragDownBlock[] movingStones = new P1DragDownBlock[4];
+    public P1Switch[] levers = new P1Switch[4];
     public Vector3[,] endPoints = new Vector3[4, 4];
     private bool[] onOff = new bool[4];
     int[] counters = new int[4];
