@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponPickup : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     private bool canPickUp = false;
     public bool hasWeapon = false;
     public string weaponName;
     private SpriteRenderer spriteR;
     private Collider2D collider;
+    private PlayerMovement player;
 
     void Start()
     {
         spriteR = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     void Update()
@@ -25,6 +27,7 @@ public class WeaponPickup : MonoBehaviour
                 hasWeapon = true;
                 spriteR.enabled = false;
                 collider.enabled = false;
+                player.equipWeapon();
             }
         }
     }
