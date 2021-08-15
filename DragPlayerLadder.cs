@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class DragPlayerLadder : MonoBehaviour
 {
+    private PlayerMovement player;
 
-    public PlayerMovement CC;
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+    }
 
     private void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.name == "Player")
         {
-            if (CC.isClimbing)
+            if (player.isClimbing)
             {
 
                 col.transform.SetParent(transform);

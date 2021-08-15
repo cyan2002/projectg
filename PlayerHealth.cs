@@ -20,12 +20,15 @@ public class PlayerHealth : MonoBehaviour
     private Animator animator;
     public LevelMover sceneMover;
     private PlayerMovement movement;
+    
 
     private bool invincible = false;
     private bool hurt = false;
 
     private float invincibilityTime = 3f;
     private float invincibilityDeltaTime = .3f;
+
+    public static bool GameIsPaused = false;
 
     [SerializeField] private string newLevel = "DeathScreen";
 
@@ -144,7 +147,7 @@ public class PlayerHealth : MonoBehaviour
         animator.SetBool("IsDead", true);
     }
 
-    private void Die()
+    public void Die()
     {
         resetHealth();
         StartCoroutine(sceneMover.respawn());

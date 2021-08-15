@@ -4,38 +4,23 @@ using UnityEngine;
 
 public class PlatformFallThrough : MonoBehaviour
 {
-    private PlatformEffector2D platform;
     private float waitTime = .5f;
 
-    void Start()
-    {
-        platform = GetComponent<PlatformEffector2D>();
-    }
+    [SerializeField]
+    private LayerMask ignoreLayer;
+    [SerializeField]
+    private LayerMask whatIsGround;
 
     void Update()
-    {
-
-        if(Input.GetKeyUp(KeyCode.S))
-        {
-            waitTime = .5f;
-        }
-
+    { 
         if(Input.GetKey(KeyCode.S))
         {
-            if(waitTime <= 0)
-            {
-                platform.rotationalOffset = 180f;
-                waitTime = .5f;
-            }
-            else
-            {
-                waitTime -= Time.deltaTime;
-            }
+            gameObject.layer = 20;
         }
 
         if(Input.GetKey(KeyCode.W) || Input.GetButtonDown("Jump"))
         {
-            platform.rotationalOffset = 0f;
+            gameObject.layer = 10;
         }
 
     }

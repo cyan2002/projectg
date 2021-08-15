@@ -52,11 +52,12 @@ public class PlayerMovement : MonoBehaviour
     private bool lookingLeft;
     private bool canTurn;
     private bool canReleaseShot = false;
-    private bool canUseVelocity = true;
+    public bool canUseVelocity = true;
     private bool canMove = true;
     private bool isShooting = false;
     private static bool equipped = false;
     private bool lowShot = false;
+    public bool testing = false;
 
     private Vector2 newVelocity;
     private Vector2 newForce;
@@ -78,7 +79,10 @@ public class PlayerMovement : MonoBehaviour
         cc = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
         capsuleColliderSize = cc.size;
-        transform.position = new Vector3(startPos.x, startPos.y, 0);
+        if(!testing)
+        {
+            transform.position = new Vector3(startPos.x, startPos.y, 0);
+        }
     }
 
     private void Update()
@@ -150,6 +154,11 @@ public class PlayerMovement : MonoBehaviour
     public void stopMovement()
     {
         canMove = false;
+    }
+
+    public void startMovement()
+    {
+        canMove = true;
     }
 
     private void Shoot()
@@ -469,6 +478,11 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = newVelocity;
             }
         }
+    }
+
+    public void equipWeapon()
+    {
+        equipped = true;
     }
 
     private void OnCollisionEnter2D()
