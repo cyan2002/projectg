@@ -18,11 +18,11 @@ public class ChainGUI : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.layer == 23)
+        if (col.gameObject.layer == 19)
         {
             spriteR.enabled = true;
         }
-        else if (col.gameObject.layer == 16)
+        else if (col.gameObject.layer == 10)
         {
             spriteR.enabled = false;
         }

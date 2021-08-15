@@ -7,6 +7,10 @@ public class FallingLog : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
 
+    public GameObject destroyObject1;
+    public GameObject destroyObject2;
+    public GameObject destroyObject3;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -15,11 +19,19 @@ public class FallingLog : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.layer == 11)
+        if (col.gameObject.layer == 10)
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.gravityScale = 3;
             animator.SetBool("Falling", true);
+            DestroyChains();
         }
+    }
+
+    void DestroyChains()
+    {
+        Destroy(destroyObject1);
+        Destroy(destroyObject2);
+        Destroy(destroyObject3);
     }
 }
