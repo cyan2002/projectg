@@ -12,13 +12,11 @@ public class Track : MonoBehaviour
     public float movementSpeed = 2.5f;
     private float turnBlockCoordinate;
 
-    [SerializeField]
-    private LayerMask whatIsTrack;
-
     public bool moving = false;
     private bool once = true;
     private bool startTurn = false;
     private bool xOry;
+    private bool changeDirection = true;
 
     private Vector2 drawingRaycast;
     private Vector3 raycaststartPosition;
@@ -29,7 +27,6 @@ public class Track : MonoBehaviour
         {
             moving = true;
         }
-
 
         if (moving)
         {
@@ -77,7 +74,6 @@ public class Track : MonoBehaviour
             findDirection = 3;
         }
 
-
         return findDirection;
 
     }
@@ -85,8 +81,6 @@ public class Track : MonoBehaviour
     public int findDirection(float angle)
     {
         int findDirection = 0;
-
-        //Debug.Log("Angle" + angle);
 
         if (direction == 1)//coming from north
         {
@@ -154,30 +148,40 @@ public class Track : MonoBehaviour
             //Debug.Log("Error");
         }
 
+        Debug.Log(findDirection);
         return findDirection;
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Special")
+        if(changeDirection)
         {
-            if (direction == 2 || direction == 4)
+            if (col.gameObject.tag == "Special")
             {
-                turnBlockCoordinate = col.gameObject.transform.position.x;
-            }
-            else
-            {
-                turnBlockCoordinate = col.gameObject.transform.position.y;
-            }
+                if (direction == 2 || direction == 4)
+                {
+                    turnBlockCoordinate = col.gameObject.transform.position.x;
+                }
+                else
+                {
+                    turnBlockCoordinate = col.gameObject.transform.position.y;
+                }
 
-            StartCoroutine(waitTime());
-            blockAngle = col.gameObject.transform.rotation.eulerAngles.z;
+                StartCoroutine(waitTime());
+                blockAngle = col.gameObject.transform.rotation.eulerAngles.z;
+            }
+            else if (col.gameObject.tag == "Special2")
+            {
+                blockAngle = col.gameObject.transform.rotation.eulerAngles.z;
+                direction = findstartDirection(blockAngle);
+            }
+            changeDirection = false;
         }
-        else if (col.gameObject.tag == "Special2")
-        {
-            blockAngle = col.gameObject.transform.rotation.eulerAngles.z;
-            direction = findstartDirection(blockAngle);
-        }
+    }
+
+    void OnTriggerExit2D()
+    {
+        changeDirection = true;
     }
 
     void startTurnFunction()

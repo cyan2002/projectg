@@ -16,17 +16,13 @@ public class AnimationTrigger : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(canSwitch)
+        if (trigger.checkActivation())
         {
-            if (trigger.checkActivation())
-            {
-                animator.SetBool(varName, true);
-            }
-            else
-            {
-                animator.SetBool(varName, false);
-            }
-            canSwitch = false;
+            animator.SetBool(varName, true);
+        }
+        else
+        {
+            animator.SetBool(varName, false);
         }
     }
 

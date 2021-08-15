@@ -6,26 +6,29 @@ public class ActivateBox : MonoBehaviour
 {
     public bool toggle = false;
     private bool activate = false;
+    private bool canSwitch = true;
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if(col.gameObject.name == "Player")
+        if (toggle)
         {
-            if(toggle)
+            if (canSwitch)
             {
                 if (Input.GetKey(KeyCode.E) && !activate)
                 {
                     activate = true;
+                    canSwitch = false;
                 }
                 else if (Input.GetKey(KeyCode.E) && activate)
                 {
                     activate = false;
+                    canSwitch = false;
                 }
             }
-            else
-            {
-                activate = true;
-            }
+        }
+        else
+        {
+            activate = true;
         }
     }
 
@@ -33,15 +36,17 @@ public class ActivateBox : MonoBehaviour
     {
         if(!toggle)
         {
-            if(col.gameObject.name == "Player")
-            {
-                activate = false;
-            }
+            activate = false;
         }
     }
 
     public bool checkActivation()
     {
         return activate;
+    }
+
+    private void finishAnimation()
+    {
+        canSwitch = true;
     }
 }

@@ -7,16 +7,29 @@ using UnityEngine;
 public class BouncingBlock : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private float speed;
+    private PlayerMovement cc;
+    public BounceBlockReceive BBR;
 
-    void OnTriggerEnter2D(Collider2D col)
+    void Start()
     {
-        rb = col.gameObject.GetComponent<Rigidbody2D>();
-        speed = rb.velocity.y;
+        rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+        cc = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
-    void OnCollisionEnter2D()
+    void OnCollisionEnter2D(Collision2D col)
     {
-        rb.AddForce(Vector2.up * Mathf.Abs(speed), ForceMode2D.Impulse);
+        if (col.gameObject.name == "Player")
+        {
+            StartCoroutine(pushTime());
+        }
+    }
+
+    IEnumerator pushTime()
+    {
+        cc.canUseVelocity = false;
+        rb.AddForce(Vector2.up * Mathf.Abs(BBR.yVelocity), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(.1f);
+
+        cc.canUseVelocity = true;
     }
 }
